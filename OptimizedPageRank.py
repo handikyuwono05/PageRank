@@ -67,12 +67,11 @@ for _ in range(iter):
     p_lama = p_baru.copy()
 ###############################################################################################################################################################################
 "Menyimpan hasil p_lama dan p_baru ke file tersendiri"
-#with open("D:\p_lama.txt", 'w') as f:
-#    f.write(p_lama)
-#with open("D:\p_baru.txt", 'w') as f:
-#    f.write(p_baru)
-#p_lama.to_csv('D:\p_lama.csv')
-#p_baru.to_csv('D:\p_baru.csv')
+p_baru_keys = pd.DataFrame(list(p_baru.keys()),columns=['nodes'])
+p_baru_values = pd.DataFrame(list(p_baru.values()),columns=['probability'])
+p_baru = p_baru_keys.join(p_baru_values)
+sorted_p_baru = p_baru.sort_values(by=['nodes'])
+export = sorted_p_baru.to_csv (r'D:\p_baru.csv', index = None, header=True)
 ###############################################################################################################################################################################
 end = tm.time()
 print("waktu proses: ", end-start, "s")
